@@ -6,7 +6,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const indexRouter = require('./routes/index');
 
-const PORT = 3001;
+const PORT = 3000;
 const mongoDb = 'mongodb://localhost:27017/members-only';
 const app = express();
 mongoose.set('strictQuery', false);
