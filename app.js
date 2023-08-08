@@ -4,6 +4,7 @@ const path = require('path');
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const indexRouter = require('./routes/index');
 
 const PORT = 3001;
 const mongoDb = 'mongodb://localhost:27017/members-only';
@@ -16,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 //routers
-
+app.use('/', indexRouter);
 main().catch((err) => console.log(err));
 
 async function main() {
