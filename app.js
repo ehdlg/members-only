@@ -7,13 +7,25 @@ const LocalStrategy = require('passport-local').Strategy;
 
 const mongoDb = 'mongodb://localhost:27017/members-only';
 
-mongoose.connect(mongoDb, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.set('strictQuery', false);
+//public directory
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({ extended: true }));
+//view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+//routers
 
 const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once('open', () => {
-  console.log('Succesful connection to MongoDB');
-});
+
+
+main().catch((err) => console.log(err));
+
+async function main() {
+  await mongoose.connect(mongoDb, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+
+  app.listen(PORT, () => `App listening on http://localhost:${PORT}`);
+}
