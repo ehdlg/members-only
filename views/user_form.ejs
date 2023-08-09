@@ -3,16 +3,53 @@
 <%- include('./layout') %>
 
 <main class="content">
-  <h2 class="body-title">Create an Account</h2>
+  <h2>Create an Account</h2>
+  <% if (errors && errors.length > 0) { %>
+  <div class="error-list">
+    <p>Please fix the following errors:</p>
+    <ul>
+      <% errors.forEach(error => { %>
+      <li><%- error.msg %></li>
+      <% }); %>
+    </ul>
+  </div>
+  <% } %>
   <form action="/register" method="POST" class="form">
     <label for="first_name">First Name:</label>
-    <input type="text" id="first_name" name="first_name" required />
+    <input
+      type="text"
+      id="first_name"
+      name="first_name"
+      value="<%- user ? user.first_name : '' %>"
+      required
+    />
 
     <label for="last_name">Last Name:</label>
-    <input type="text" id="last_name" name="last_name" required />
+    <input
+      type="text"
+      id="last_name"
+      name="last_name"
+      value="<%- user ? user.last_name : '' %>"
+      required
+    />
 
     <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required />
+    <input
+      type="text"
+      id="username"
+      name="username"
+      value="<%- user ? user.username : '' %>"
+      required
+    />
+
+    <label for="email">Email:</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      value="<%- user ? user.email : '' %>"
+      required
+    />
 
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" required />
@@ -24,9 +61,6 @@
       name="confirmPassword"
       required
     />
-
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required />
 
     <button type="submit" class="btn-primary">Register</button>
   </form>
