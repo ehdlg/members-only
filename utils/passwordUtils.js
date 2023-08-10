@@ -6,14 +6,11 @@ const validPassword = (password, hash, salt) => {
 };
 
 const generatePassword = (password) => {
-  const SALT_ROUNDS = 10; 
+  const SALT_ROUNDS = 10;
   const salt = bcrypt.genSaltSync(SALT_ROUNDS);
   const hashedPassword = bcrypt.hashSync(password, salt);
 
-  return {
-    salt,
-    hashedPassword,
-  };
+  return hashedPassword;
 };
 
 module.exports = { generatePassword, validPassword };
