@@ -62,4 +62,8 @@ exports.user_login_post = [
   }),
 ];
 
-exports.user_login_get = asyncHandler(async (req, res, next) => {});
+exports.user_logout_get = asyncHandler(async (req, res, next) => {
+  req.logout(() => {
+    res.redirect('/');
+  });
+});
