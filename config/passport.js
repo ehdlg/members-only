@@ -24,4 +24,17 @@ const strategy = new LocalStrategy(async (username, password, done) => {
 
 passport.use(strategy);
 
+passport.serializeUser((user, done) => {
+  done(null, user._id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch (err) {
+    done(err);
+  }
+});
+
 module.exports = passport;
