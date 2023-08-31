@@ -1,0 +1,15 @@
+<%- include('./layout') %>
+
+<main class="content">
+  <h2>Become an Administrator</h2>
+
+  <p><%= locals.user.username %>, would you like to become an administrator?</p>
+
+  <form action="" method="POST">
+    <button type="submit" class="btn-primary">
+      Yes, become an administrator
+    </button>
+  </form>
+
+  <a href="/" class="btn-secondary">No, go back</a>
+</main>

@@ -1,0 +1,46 @@
+<%- include('./layout') %>
+
+<main class="content">
+  <% if(locals.user && locals.user.membership){ %>
+  <h2 class="body-title"><%= action %>, <%= locals.user.username%></h2>
+  <% if (errors && errors.length > 0) { %>
+  <div class="error-list">
+    <p>Please fix the following errors:</p>
+    <ul>
+      <% errors.forEach(error => { %>
+      <li><%- error.msg %></li>
+      <% }); %>
+    </ul>
+  </div>
+  <% } %>
+  <form action="" method="POST" class="form">
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        required
+        value="<%= message ? message.title : '' %> "
+      />
+    </div>
+    <div class="form-group">
+      <label for="text">Message:</label>
+      <textarea id="text" name="text" rows="4" required>
+<%= message ? message.text : '' %></textarea
+      >
+    </div>
+    <button type="submit" class="btn-primary">Create Message</button>
+    <a href="/logout">
+      <button class="btn-primary">Logout</button>
+    </a>
+  </form>
+
+  <%}else{%>
+  <h2>This page is exclusive for the Members only Message Club</h2>
+  <p>
+    Please, <a href="/upgrade">upgrade</a> your account if you want to see the
+    details and post messages
+  </p>
+  <% } %>
+</main>

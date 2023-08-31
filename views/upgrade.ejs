@@ -1,0 +1,22 @@
+<!-- views/upgrade-form.ejs -->
+<%- include('./layout') %>
+
+<main class="content">
+  <% if (errors && errors.length > 0) { %>
+  <div class="error-list">
+    <ul>
+      <% errors.forEach(error => { %>
+      <li><%- error.msg %></li>
+      <% }); %>
+    </ul>
+  </div>
+  <% } %>
+  <h2 class="body-title">Upgrade Your Account to be a member</h2>
+  <p>Give us the correct secret password to be a member!</p>
+  <hr />
+  <form class="upgrade-form" action="" method="POST">
+    <label for="secret">Secret Password:</label>
+    <input type="password" id="secret" name="secret" required />
+    <button type="submit" class="btn-primary">Upgrade Account</button>
+  </form>
+</main>

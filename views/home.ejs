@@ -2,12 +2,20 @@
 
 <main class="content">
   <% if(locals.user){ %>
-  <h2>Welcome, <%= locals.user.username %></h2>
-  <a href="/logout">
-    <button class="btn-primary">Logout</button>
-  </a>
-  <%}else{%>
-  <h2>This is the home page for the member's only Message Club</h2>
+  <h2 class="body-title">Welcome, <%= locals.user.username %></h2>
+  <p>
+    Your membership status is: <%= locals.user.membership ? 'Member' : `Not
+    Member` %><%= locals.user.admin ? ' and you are also Admin' : '' %>.
+  </p>
+  <% if(!locals.user.membership){ %>
+  <p>
+    If you want to be a member of the club,
+    <a href="/upgrade">submit the <strong>secret</strong> password</a>
+  </p>
+  <% } %> <%}else{%>
+  <h2 class="body-title">
+    This is the home page for the Members Only Message Club
+  </h2>
   <p>Please, <a href="/login">login</a> or <a href="/register">register</a></p>
   <% } %>
 </main>

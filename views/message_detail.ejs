@@ -1,0 +1,23 @@
+<%- include('./layout') %>
+
+<main class="content">
+  <% if (locals.user.membership) { %>
+  <article class="message-box">
+    <h2><%= message.title %></h2>
+    <p><%= message.text %></p>
+    <p>Posted by: <%= message.user.username %></p>
+    <p>Posted on: <%= message.timestamp.toISOString().slice(0, 10) %></p>
+    <% if (locals.user.admin || locals.user._id.toString() ===
+    message.user._id.toString()) { %>
+    <div class="message-actions">
+      <% if (locals.user._id.toString() === message.user._id.toString()) { %>
+      <a href="/posts/<%= message._id %>/update" class="btn-primary">Edit</a>
+      <% }%>
+      <a href="/posts/<%= message._id %>/delete" class="btn-primary">Delete</a>
+    </div>
+    <% } %>
+  </article>
+  <% } else { %>
+  <p>You need to be a member to view message details.</p>
+  <% } %>
+</main>

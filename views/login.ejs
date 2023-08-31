@@ -1,7 +1,7 @@
 <%- include('./layout') %>
 
 <main class="content">
-  <h2>Login</h2>
+  <h2 class="body-title">Login</h2>
   <% if (errors && errors.length > 0) { %>
   <div class="error-list">
     <p>Please fix the following errors:</p>
@@ -18,7 +18,7 @@
       type="text"
       id="username"
       name="username"
-      value="<%- user ? user.username : '' %>"
+      value="<%= user ? user.username : '' %>"
       required
     />
 
@@ -28,8 +28,6 @@
     <button type="submit" class="btn-primary">Login</button>
   </form>
   <a href="/register">
-    <button type="submit" class="btn-primary">
-      Don't have an account? Go to Register
-    </button>
+    <button class="btn-primary">Don't have an account? Go to Register</button>
   </a>
 </main>

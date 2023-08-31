@@ -1,0 +1,72 @@
+<%- include('./layout.ejs') %>
+<main class="content">
+  <% if (errors && errors.length > 0) { %>
+  <div class="error-list">
+    <p>Please fix the following errors:</p>
+    <ul>
+      <% errors.forEach(error => { %>
+      <li><%- error.msg %></li>
+      <% }); %>
+    </ul>
+  </div>
+  <% } %>
+  <div class="form upgrade-form">
+    <h2>Update Profile</h2>
+    <form action="/profile/update" method="POST">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          value="<%= user.username %>"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="first_name">First Name</label>
+        <input
+          type="text"
+          id="first_name"
+          name="first_name"
+          value="<%= user.first_name %>"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="last_name">Last Name</label>
+        <input
+          type="text"
+          id="last_name"
+          name="last_name"
+          value="<%= user.last_name %>"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value="<%= user.email %>"
+          required
+        />
+      </div>
+      <% if (user.admin) { %>
+      <div class="form-group">
+        <label for="admin">Admin</label>
+        <input type="checkbox" id="admin" name="admin" <%= user.admin ?
+        'checked' : '' %>>
+      </div>
+      <% } %> <% if (user.membership) { %>
+      <div class="form-group">
+        <label for="membership">Membership</label>
+        <input type="checkbox" id="membership" name="membership" <%=
+        user.membership ? 'checked' : '' %>>
+      </div>
+      <% } %>
+      <button class="btn-primary" type="submit">Update Profile</button>
+    </form>
+  </div>
+</main>

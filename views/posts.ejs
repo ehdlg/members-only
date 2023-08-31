@@ -1,0 +1,41 @@
+<%- include('./layout') %>
+
+<main class="content">
+  <h2 class="body-title">Posts</h2>
+
+  <div class="messages">
+    <% if (messages.length > 0) { %> <% messages.forEach(message => { %>
+    <a href="/posts/<%= message._id %>" class="message-box-link">
+      <div class="message-box">
+        <% if (locals.user.membership) { %>
+        <div class="message-header">
+          <p class="username">
+            <strong>User:</strong> <%= message.user.username %>
+          </p>
+          <p class="date">
+            <strong>Date:</strong> <%= message.timestamp.toISOString().slice(0,
+            10) %>
+          </p>
+        </div>
+        <% } %>
+        <h3 class="message-title"><%= message.title %></h3>
+        <p class="message-text"><%= message.text %></p>
+      </div>
+    </a>
+    <% }) %> <% } else { %>
+    <h3>No messages yet.</h3>
+    <% } %>
+  </div>
+
+  <% if (!locals.user.membership) { %>
+  <p>
+    You have limited access with your current membership. If you want to post
+    and see the details of the messages,
+    <a href="/upgrade">upgrade your account</a>
+  </p>
+  <% } else { %>
+  <a href="/posts/new">
+    <button class="btn-primary">Post new message</button>
+  </a>
+  <% } %>
+</main>

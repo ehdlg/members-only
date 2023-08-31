@@ -1,0 +1,22 @@
+<%- include('./layout') %>
+
+<main class="content">
+  <div class="profile-container">
+    <h2>Your Profile</h2>
+    <div class="profile">
+      <p><strong>Username:</strong> <%= locals.user.username %></p>
+      <p><strong>First Name:</strong> <%= locals.user.first_name %></p>
+      <p><strong>Last Name:</strong> <%= locals.user.last_name %></p>
+      <p><strong>Email:</strong> <%= locals.user.email %></p>
+      <p>
+        <strong>Membership:</strong> <%= locals.user.membership ? 'Member' :
+        `Not member` %>
+      </p>
+
+      <p><strong>Admin:</strong> <%= locals.user.admin ? 'Yes' : 'No'%></p>
+    </div>
+    <a href="/profile/update"
+      ><button class="btn-primary">Edit profile</button></a
+    >
+  </div>
+</main>

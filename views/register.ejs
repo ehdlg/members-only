@@ -3,7 +3,7 @@
 <%- include('./layout') %>
 
 <main class="content">
-  <h2>Create an Account</h2>
+  <h2 class="body-title">Create an Account</h2>
   <% if (errors && errors.length > 0) { %>
   <div class="error-list">
     <p>Please fix the following errors:</p>
@@ -62,6 +62,16 @@
       required
     />
 
+    <label for="secret"
+      >Secret password for member account (not required):
+    </label>
+    <input type="password" name="secret" id="" />
+
     <button type="submit" class="btn-primary">Register</button>
   </form>
+  <a href="/login">
+    <button type="submit" class="btn-primary">
+      Already have an account? Go to Login
+    </button>
+  </a>
 </main>
