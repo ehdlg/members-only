@@ -1,7 +1,7 @@
 .form {
   display: grid;
   grid-gap: 1rem;
-  min-width: 600px;
+  min-width: 100%;
   margin: 0 auto;
 }
 
@@ -33,7 +33,32 @@
   transition: 0.3s ease-in;
   margin: 0.5rem 0;
 }
+.btn-primary:hover {
+  background-color: var(--secondary);
+}
 
 .form button:hover {
   background-color: var(--accent);
+}
+
+form-group,
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+}
+
+textarea {
+  resize: vertical;
 }
