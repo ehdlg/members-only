@@ -1,0 +1,24 @@
+.profile-container {
+  min-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.profile {
+  margin-top: 20px;
+  padding: 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 5px;
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.profile-container h2 {
+  margin-bottom: 10px;
+}
+
+strong {
+  font-weight: bold;
+}
