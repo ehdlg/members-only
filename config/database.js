@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-const mongoDb = 'mongodb://localhost:27017/members-only';
+require('dotenv').config();
+
+const mongoDb = process.env.MONGO_URL;
 
 const connection = async () => {
   try {
