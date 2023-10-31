@@ -41,7 +41,7 @@ exports.validateUser = [
     })
     .escape(),
   body('secret').custom((value) => {
-    if (value === '' || value === process.env.SECRET_PASSWORD) {
+    if (value === '' || value === process.env.SECRET_MEMBER_PASSWORD) {
       return true;
     }
     throw new Error(
