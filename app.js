@@ -7,7 +7,7 @@ const indexRouter = require('./routes/index');
 const connection = require('./config/database');
 require('dotenv').config();
 
-const PORT = 3000;
+const PORT = process.env.PORT;
 const app = express();
 mongoose.set('strictQuery', false);
 //public directory
@@ -29,7 +29,6 @@ app.use(passport.session());
 app.use((req, res, next) => {
   if (req.isAuthenticated()) {
     res.locals.user = req.user;
-    console.log(typeof req.user.admin);
   }
   next();
 });
