@@ -1,14 +1,25 @@
 <%- include('./layout') %>
 
 <main class="content">
+  <% if (errors && errors.length > 0) { %>
+  <div class="error-list">
+    <ul>
+      <% errors.forEach(error => { %>
+      <li><%- error.msg %></li>
+      <% }); %>
+    </ul>
+  </div>
+  <% } %>
   <h2>Become an Administrator</h2>
 
   <p><%= locals.user.username %>, would you like to become an administrator?</p>
 
-  <form action="" method="POST">
-    <button type="submit" class="btn-primary">
-      Yes, become an administrator
-    </button>
+  <p>Give us the correct secret password to become an admin!</p>
+  <hr />
+  <form class="upgrade-form" action="" method="POST">
+    <label for="secret">Secret Password:</label>
+    <input type="password" id="secret" name="secret" required />
+    <button type="submit" class="btn-primary">Become admin</button>
   </form>
 
   <a href="/" class="btn-secondary">No, go back</a>
