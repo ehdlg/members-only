@@ -72,8 +72,24 @@ exports.validateUpgrade = [
     .isLength({ min: 1 })
     .escape()
     .custom((value) => {
-      if (value !== process.env.SECRET_PASSWORD) {
-        throw new Error("That's not the secret password! Try again");
+      if (value !== process.env.SECRET_MEMBER_PASSWORD) {
+        throw new Error(
+          "That's not the secret password for becoming a member password! Try again"
+        );
+      }
+      return true;
+    }),
+];
+
+exports.validateAdmin = [
+  body('secret', 'Please, enter the admin secret password')
+    .isLength({ min: 1 })
+    .escape()
+    .custom((value) => {
+      if (value !== process.env.SECRET_ADMIN_PASSWORD) {
+        throw new Error(
+          "That's not the secret password for becoming an admin! Try again"
+        );
       }
       return true;
     }),
