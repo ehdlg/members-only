@@ -131,15 +131,25 @@ exports.user_profile_get = (req, res, next) => {
 };
 
 exports.user_admin_get = (req, res, next) => {
-  res.render('admin_update', { title: 'Update to Admin' });
+  res.render('admin_update', { title: 'Update to Admin', errors: false });
 };
 
-exports.user_admin_post = asyncHandler(async (req, res, next) => {
-  await User.findByIdAndUpdate(
-    res.locals.user._id,
-    { admin: true },
-    { new: true }
-  );
+exports.user_admin_post = [
+  validation.validateAdmin,
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.render('admin_update', {
+        title: 'Become an admin',
+        errors: errors.array(),
+      });
+    }
+    await User.findByIdAndUpdate(
+      res.locals.user._id,
+      { admin: true },
+      { new: true }
+    );
 
-  res.redirect('/');
-});
+    res.redirect('/');
+  }),
+];
